@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY requirements.txt .
 COPY muriel.py .
+COPY matematica.py .
+COPY test_matematica.py .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
