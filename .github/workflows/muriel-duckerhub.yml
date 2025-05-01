@@ -6,8 +6,9 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  testes-unitarios:
     runs-on: ubuntu-latest
+    name: Testes Unitários
 
     steps:
       - name: Checkout código
@@ -26,6 +27,15 @@ jobs:
       - name: Rodar testes unitários
         run: |
           python -m unittest discover -s . -p "test_matematica.py"
+
+  build-e-dockerhub:
+    runs-on: ubuntu-latest
+    name: Build e Push DockerHub
+    needs: testes-unitarios
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
 
       - name: Login no Docker Hub
         uses: docker/login-action@v3
